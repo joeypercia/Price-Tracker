@@ -1,0 +1,8 @@
+pricecheck/pricecheck/secret.py
+node_modules
+Include
+Lib
+pricecheck/frontend/node_modules
+Scripts
+pyvenv.cfg
+pricecheck/db.sqlite3
