@@ -42,6 +42,7 @@ class Home extends Component {
     formData.append('name', this.state.search)
     formData.append('price', 'n/a')
     formData.append('date', 'n/a')
+    formData.append('imagelink', 'n/a')
     formData.append('type', 'scrape')
     axios.post(API_URL, formData)
     .then(res => {
@@ -83,20 +84,20 @@ class Home extends Component {
       <Table>
         <thead>
           <tr>
+            <th>Image</th>
             <th>Item Name</th>
             <th>Price</th>
             <th>Link</th>
-            <th>Date</th>
           </tr>
         </thead>
       <tbody>
         {items.length ?
           items.map((item, index) => (
             <tr key = {index}>
+              <td>{item.imagelink}</td>
               <td>{item.name}</td>
               <td>{item.price}</td>
               <td>{item.link}</td>
-              <td>{item.date}</td>
             </tr>
           ))
           :
