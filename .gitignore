@@ -1,4 +1,6 @@
 pricecheck/pricecheck/secret.py
+pricecheck/pricecheck/__pycache__
+pricecheck/items/__pycache__
 node_modules
 Include
 Lib
@@ -6,3 +8,4 @@ pricecheck/frontend/node_modules
 Scripts
 pyvenv.cfg
 pricecheck/db.sqlite3
+*.pyc
