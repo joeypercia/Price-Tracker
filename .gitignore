@@ -1,11 +1,23 @@
-pricecheck/pricecheck/secret.py
-pricecheck/pricecheck/__pycache__
-pricecheck/items/__pycache__
+pricecheck/secret.py
+pricecheck/__pycache__
+items/__pycache__
 node_modules
 Include
 Lib
-pricecheck/frontend/node_modules
+frontend/node_modules
 Scripts
 pyvenv.cfg
-pricecheck/db.sqlite3
+db.sqlite3
 *.pyc
+*.js
+!jest.config.js
+*.d.ts
+
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
