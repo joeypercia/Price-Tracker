@@ -1,14 +1,7 @@
-# Welcome to your CDK TypeScript project
+## Price-Tracker
 
-This is a blank project for CDK development with TypeScript.
+This web application is under development and is currently limited in functionality. 
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Support for more websites and products will be added soon.
 
-## Useful commands
-
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+Available at 'http://mywebappenvironment.eba-upj4tq3p.us-west-1.elasticbeanstalk.com/static/'
