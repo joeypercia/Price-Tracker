@@ -9,7 +9,6 @@ Scripts
 pyvenv.cfg
 db.sqlite3
 *.pyc
-*.js
 !jest.config.js
 *.d.ts
 static
