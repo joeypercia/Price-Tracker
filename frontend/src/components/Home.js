@@ -118,7 +118,7 @@ class Home extends Component {
         </div>
 
 
-      <Form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+      <Form onChange={this.handleChange} onSubmit={this.handleSubmit} style={{marginBottom:"10px"}}>
         <Input type="search" name="search" placeholder="Enter an item to search"/>
         <Button style={{ marginTop: "10px" }} color="primary" name="action" type="submit" value="scrape" size="lg" block>Search</Button>
       </Form>
