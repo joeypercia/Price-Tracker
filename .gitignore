@@ -12,6 +12,7 @@ db.sqlite3
 *.js
 !jest.config.js
 *.d.ts
+static
 
 # CDK asset staging directory
 .cdk.staging

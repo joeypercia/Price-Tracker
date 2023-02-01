@@ -1,7 +1,9 @@
 {
   "name": "cdk-eb-infra",
   "version": "0.1.0",
-  "engines": { "node" : "16.15.1" },
+  "engines": {
+    "node": "16.15.1"
+  },
   "bin": {
     "cdk-eb-infra": "bin/cdk-eb-infra.js"
   },
@@ -23,6 +25,9 @@
     "@aws-cdk/aws-elasticbeanstalk": "1.180.0",
     "@aws-cdk/aws-iam": "1.180.0",
     "@aws-cdk/aws-s3-assets": "1.180.0",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.10.0",
     "acorn": "^8.8.2",
     "acorn-walk": "^8.2.0",
@@ -37,6 +42,7 @@
     "babel-preset-current-node-syntax": "^1.0.1",
     "babel-preset-jest": "^29.4.0",
     "balanced-match": "^1.0.2",
+    "bootstrap": "^5.2.3",
     "brace-expansion": "^1.1.11",
     "braces": "^3.0.2",
     "browserslist": "^4.21.4",
@@ -186,6 +192,7 @@
     "prompts": "^2.4.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
     "react-transition-group": "^4.4.5",

@@ -30,7 +30,7 @@ SECRET_KEY = PRIVATE_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mywebappenvironment.eba-upj4tq3p.us-west-1.elasticbeanstalk.com', '52.8.78.24']
+ALLOWED_HOSTS = ['mywebappenvironment.eba-upj4tq3p.us-west-1.elasticbeanstalk.com', '52.8.78.24', 'localhost']
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',

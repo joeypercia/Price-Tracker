@@ -76,7 +76,11 @@ def items_list(request):
                 itemlink = items.find('a', class_="a-link-normal s-underline-text s-underline-link-text s-link-style a-text-normal")['href']
                 itemlink = "https://amazon.com" + itemlink[:itemlink.index('/ref') + 4]
                 itemdate = date.today().strftime("%m-%d-%y")
-                itemimagelink = "n/a"
+                item_imagelink = items.find('img', class_="s-image")
+                if item_imagelink is not None:
+                    itemimagelink = item_imagelink['src']
+                    
+                #itemimagelink = "TEST"
 
                 if None not in (itemname, itemprice, itemlink, itemimagelink):
                     if name.lower() in itemname.lower():
