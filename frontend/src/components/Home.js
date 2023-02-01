@@ -123,12 +123,10 @@ class Home extends Component {
         <Button style={{ marginTop: "10px" }} color="primary" name="action" type="submit" value="scrape" size="lg" block>Search</Button>
       </Form>
 
-      <Table style={{color: "white"}}>
+      <Table hover borderless striped dark style={{color: "white"}}>
         
         <thead>
           <tr>
-
-
           <th>
               Image
           </th>
@@ -147,8 +145,6 @@ class Home extends Component {
               Link <FontAwesomeIcon icon={faSortDown} style={{marginLeft: "5px"}} />
             </div>
           </th>
-
-
           </tr>
         </thead>
       <tbody>
@@ -158,7 +154,7 @@ class Home extends Component {
               <td><img src={item.imagelink} alt={item.name} style={{ width: "100%", height: "auto" }}/></td>
               <td>{item.name}</td>
               <td>{item.price}</td>
-              <td><a href={item.link} target="_blank">{item.link}</a></td>
+              <td><a href={item.link} target="_blank"><img src="https://cdn.worldvectorlogo.com/logos/amazon-1.svg" alt="Amazon logo" title="Go to Amazon" style={{width: "100px", height:"100px"}} ></img></a></td>
             </tr>
           ))
           :
