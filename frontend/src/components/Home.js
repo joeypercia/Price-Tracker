@@ -20,7 +20,7 @@ class Home extends Component {
     };
   }
 
-  //TODO: Fix sorting
+
   sortByColumn = (col) => {
     const { items, sortBy, sortDirection } = this.state;
     let direction = 'asc';
@@ -29,16 +29,27 @@ class Home extends Component {
       direction = sortDirection === 'asc' ? 'desc' : 'asc';
     }
 
+    items.forEach(item => {
+      const strippedPrice = item.price.replace(/[^\d.]/g, "");
+      item.sortablePrice = strippedPrice ? parseFloat(strippedPrice) : Number.NEGATIVE_INFINITY;
+    });
+    
     this.setState({
-      items: items.sort((a, b) => {
-        if (a[col] < b[col]) {
-          return direction === 'asc' ? -1 : 1;
-        }
-        if (a[col] > b[col]) {
-          return direction === 'asc' ? 1 : -1;
-        }
-        return 0;
-      }),
+      items: items
+        .filter(item => item.price !== 'n/a')
+        .sort((a, b) => {
+          let aPrice = parseFloat(a.price.replace(/[^\d.-]/g, '')) || 0;
+          let bPrice = parseFloat(b.price.replace(/[^\d.-]/g, '')) || 0;
+          
+          if (aPrice < bPrice) {
+            return direction === 'asc' ? -1 : 1;
+          }
+          if (aPrice > bPrice) {
+            return direction === 'asc' ? 1 : -1;
+          }
+          return 0;
+        })
+        .concat(items.filter(item => item.price === 'n/a')),
       sortBy: col,
       sortDirection: direction
     });
@@ -135,14 +146,14 @@ class Home extends Component {
               Item Name <FontAwesomeIcon icon={faSortDown} style={{marginLeft: "5px"}} />
             </div>
           </th>
-          <th>
+          <th style={{minWidth: "100px"}}>
             <div onClick={() => this.sortByColumn('price')}>
               Price <FontAwesomeIcon icon={faSortDown} style={{marginLeft: "5px"}} />
             </div>
           </th>
           <th>
             <div onClick={() => this.sortByColumn('link')}>
-              Link <FontAwesomeIcon icon={faSortDown} style={{marginLeft: "5px"}} />
+              Retailer <FontAwesomeIcon icon={faSortDown} style={{marginLeft: "5px"}} />
             </div>
           </th>
           </tr>
@@ -150,11 +161,19 @@ class Home extends Component {
       <tbody>
         {items.length ?
           items.map((item, index) => (
-            <tr key = {index}>
+            <tr key={index} onClick={() => window.open(item.link, "_blank")} style={{ cursor: "pointer", fontSize: "1.2em"}}>
               <td><img src={item.imagelink} alt={item.name} style={{ width: "100%", height: "auto" }}/></td>
               <td>{item.name}</td>
               <td>{item.price}</td>
-              <td><a href={item.link} target="_blank"><img src="https://cdn.worldvectorlogo.com/logos/amazon-1.svg" alt="Amazon logo" title="Go to Amazon" style={{width: "100px", height:"100px"}} ></img></a></td>
+              <td><a href={item.link} target="_blank"><img src=
+                {item.link.includes("newegg") ? "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/052016/untitled-1_165.png?itok=R-zqzbAC" : 
+                "https://cdn.worldvectorlogo.com/logos/amazon-1.svg"}
+                alt={item.link.includes("ebay") ? "eBay logo" : "Amazon logo"}
+                title={item.link.includes("ebay") ? "Go to eBay" : "Go to Amazon"}
+                style={{width: "100px", height:"100px"}} 
+                />
+              </a>
+              </td>
             </tr>
           ))
           :
