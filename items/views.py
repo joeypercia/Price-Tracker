@@ -20,30 +20,51 @@ def get_items(name):
     bs = []
 
     headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
-    'referer': 'https://google.com',
+
     }
 
-    #headers = {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
-    #           'referer': 'https://google.com',
-    #}
-
+    #503 error begone!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    headers_list = [
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36'},
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0'},
+    {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36'},
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36',
+    'referer': 'https://google.com'},
+    {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+    'referer': 'https://google.com'},
+    {    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'TE': 'Trailers'},
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36',
+     'Accept-Language': 'en-US,en;q=0.9',
+     'Accept-Encoding': 'gzip, deflate, br',
+     'Connection': 'keep-alive',
+     'Upgrade-Insecure-Requests': '1',
+     'TE': 'Trailers'
+    },
+]
     for website in websites:
-        
-        
-        #website = website.replace("&amp;", "&")
-        response = requests.get(website, headers=headers)
-        response.raise_for_status()
+        for headers in headers_list:
+            response = requests.get(website, headers=headers)
+            if response.status_code == 200:
+                bs.append(BeautifulSoup(response.text, 'lxml'))
+                break
+        else:
+            return Response("Failed to get response from website", status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-        if response.status_code == requests.codes.ok:
-            bs.append(BeautifulSoup(response.text, 'lxml'))
-                
-
+    #todo: refactor this code
     list_all_items = []
     #amazon
-    list_all_items.append(bs[0].findAll('div', class_="sg-col-20-of-24 s-result-item s-asin sg-col-0-of-12 sg-col-16-of-20 sg-col s-widget-spacing-small sg-col-12-of-16"))
-    #walmart
-    list_all_items.append(bs[1].find('div', class_="item-cells-wrap border-cells items-grid-view four-cells expulsion-one-cell"))
+    if bs[0] is not None:
+        list_all_items.append(bs[0].findAll('div', class_="sg-col-20-of-24 s-result-item s-asin sg-col-0-of-12 sg-col-16-of-20 sg-col s-widget-spacing-small sg-col-12-of-16"))
+    #newegg
+    if bs[1] is not None:
+        list_all_items.append(bs[1].find('div', class_="item-cells-wrap border-cells items-grid-view four-cells expulsion-one-cell"))
+
+    
 
     #print(list_all_items[0])
     #print(websites[1])

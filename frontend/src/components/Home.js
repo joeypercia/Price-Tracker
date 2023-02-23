@@ -168,8 +168,8 @@ class Home extends Component {
               <td><a href={item.link} target="_blank"><img src=
                 {item.link.includes("newegg") ? "https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-original-577x577/s3/052016/untitled-1_165.png?itok=R-zqzbAC" : 
                 "https://cdn.worldvectorlogo.com/logos/amazon-1.svg"}
-                alt={item.link.includes("ebay") ? "eBay logo" : "Amazon logo"}
-                title={item.link.includes("ebay") ? "Go to eBay" : "Go to Amazon"}
+                alt={item.link.includes("newegg") ? "Newegg logo" : "Amazon logo"}
+                title={item.link.includes("newegg") ? "Go to Newegg" : "Go to Amazon"}
                 style={{width: "100px", height:"100px"}} 
                 />
               </a>
